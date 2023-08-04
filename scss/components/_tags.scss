@@ -1,0 +1,11 @@
+.tag {
+    background-color:$primary-color;
+    padding:16px;
+    border-radius:$dropdown-border-radius;
+    display:flex;
+    justify-content: space-between;
+    min-width:170px;
+    &__close {
+        cursor:pointer;
+    }
+}

@@ -1,0 +1,43 @@
+body {
+    margin:0;
+    background-color:$primary-background-color;
+    font-family:$font-text;
+    font-size:$font-size-default
+}
+
+main {
+    padding:20px 100px;
+}
+
+.dropdowns {
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    flex:1;
+    &__wrapper {
+        display:flex;
+        align-items:center;
+        gap:50px;
+    }
+}
+
+.tags {
+    margin-top:20px;
+    display:flex;
+    flex-wrap: wrap;
+    gap:20px;
+}
+
+.number_recipes {
+    font-family: $font-title;
+    font-size:21px;
+    padding-left:50px;
+    white-space: nowrap;
+}
+
+.recipes {
+    display:flex;
+    flex-wrap: wrap;
+    gap:50px;
+    margin-top:50px;
+}

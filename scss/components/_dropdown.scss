@@ -1,0 +1,13 @@
+.dropdown {
+    background-color:$secondary-background-color;
+    padding:16px;
+    border-radius:$dropdown-border-radius;
+    display:flex;
+    justify-content: space-between;
+    min-width:160px;
+    &__label {
+        font-family:$font-text;
+        font-weight:500;
+        font-size:16px;
+    }
+}
