@@ -11,18 +11,16 @@ main {
 
 .dropdowns {
     display:flex;
-    align-items:center;
     justify-content: space-between;
     flex:1;
     &__wrapper {
+        position:relative;
         display:flex;
-        align-items:center;
-        gap:50px;
     }
 }
 
 .tags {
-    margin-top:20px;
+    margin-top:30px;
     display:flex;
     flex-wrap: wrap;
     gap:20px;
@@ -32,6 +30,7 @@ main {
     font-family: $font-title;
     font-size:21px;
     padding-left:50px;
+    padding-top:10px;
     white-space: nowrap;
 }
 

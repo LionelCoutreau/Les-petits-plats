@@ -34,10 +34,11 @@
   width: 80%;
 }
 .searchbar__input {
+  border: 0px;
   font-size: 16px;
   border-radius: 10px;
   flex: 1;
-  padding: 20px;
+  padding: 25px 20px;
   padding-right: 62px;
 }
 .searchbar__button {
@@ -69,16 +70,68 @@
 
 .dropdown {
   background-color: #FFFFFF;
-  padding: 16px;
   border-radius: 10px;
+  width: 200px;
+  position: absolute;
+  z-index: 10;
+  overflow: hidden;
+}
+.dropdown--apparels {
+  left: 220px;
+}
+.dropdown--ustensils {
+  left: 440px;
+}
+.dropdown__wrapper {
   display: flex;
   justify-content: space-between;
-  min-width: 160px;
+  padding: 16px;
 }
 .dropdown__label {
   font-family: "Manrope";
   font-weight: 500;
   font-size: 16px;
+}
+.dropdown__tags {
+  display: none;
+}
+.dropdown__searchbar {
+  display: flex;
+  align-items: center;
+  padding: 0px 16px;
+}
+.dropdown__input {
+  border: 1px solid #C6C6C6;
+  color: #7A7A7A;
+  border-radius: 2px;
+  width: 100%;
+  padding: 10px;
+  padding-right: 25px;
+}
+.dropdown__button {
+  border: 0px;
+  width: 20px;
+  height: 20px;
+  margin-left: -25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+.dropdown__list {
+  height: 200px;
+  overflow: auto;
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+  padding-top: 15px;
+}
+.dropdown__list li {
+  padding: 8px 16px;
+  cursor: default;
+}
+.dropdown__list li:hover {
+  background-color: #FFD15B;
 }
 
 .recipe {
@@ -170,18 +223,16 @@ main {
 
 .dropdowns {
   display: flex;
-  align-items: center;
   justify-content: space-between;
   flex: 1;
 }
 .dropdowns__wrapper {
+  position: relative;
   display: flex;
-  align-items: center;
-  gap: 50px;
 }
 
 .tags {
-  margin-top: 20px;
+  margin-top: 30px;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -191,6 +242,7 @@ main {
   font-family: "Anton";
   font-size: 21px;
   padding-left: 50px;
+  padding-top: 10px;
   white-space: nowrap;
 }
 

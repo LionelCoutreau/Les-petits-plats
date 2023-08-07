@@ -21,17 +21,50 @@
     <main>
         <section class="dropdowns">
             <div class="dropdowns__wrapper">
-                <div class="dropdown">
-                    <div class="dropdown__label">Ingrédients</div>
-                    <img class="dropdown__icon" src="./assets/down.svg" />
+                <div class="dropdown dropdown--ingredients">
+                    <div class="dropdown__wrapper">
+                        <div class="dropdown__label">Ingrédients</div>
+                        <img class="dropdown__icon" src="./assets/down.svg" />
+                    </div>
+                    <div class="dropdown__tags dropdown__tags--ingredients">
+                        <div class="dropdown__searchbar">
+                            <input class="dropdown__input" type="search">
+                            <button class="dropdown__button" type="submit">
+                                <img src="./assets/search_small.svg" />
+                            </button>
+                        </div>
+                        <ul class="dropdown__list"></ul>
+                    </div>
                 </div>
-                <div class="dropdown">
-                    <div class="dropdown__label">Appareils</div>
-                    <img class="dropdown__icon" src="./assets/down.svg" />
+                <div class="dropdown dropdown--apparels">
+                    <div class="dropdown__wrapper">
+                        <div class="dropdown__label">Appareils</div>
+                        <img class="dropdown__icon" src="./assets/down.svg" />
+                    </div>
+                    <div class="dropdown__tags dropdown__tags--apparels">
+                        <div class="dropdown__searchbar">
+                            <input class="dropdown__input" type="search">
+                            <button class="dropdown__button" type="submit">
+                                <img src="./assets/search_small.svg" />
+                            </button>
+                        </div>
+                        <ul class="dropdown__list"></ul>
+                    </div>
                 </div>
-                <div class="dropdown">
-                    <div class="dropdown__label">Ustensiles</div>
-                    <img class="dropdown__icon" src="./assets/down.svg" />
+                <div class="dropdown dropdown--ustensils">
+                    <div class="dropdown__wrapper">
+                        <div class="dropdown__label">Ustensiles</div>
+                        <img class="dropdown__icon" src="./assets/down.svg" />
+                    </div>
+                    <div class="dropdown__tags dropdown__tags--ustensils">
+                        <div class="dropdown__searchbar">
+                            <input class="dropdown__input" type="search">
+                            <button class="dropdown__button" type="submit">
+                                <img src="./assets/search_small.svg" />
+                            </button>
+                        </div>
+                        <ul class="dropdown__list"></ul>
+                    </div>
                 </div>
             </div>
             <div class="number_recipes"></div>

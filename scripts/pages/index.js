@@ -1,20 +1,15 @@
+// Importation de la data
+import recipes from '../../data/recipes.js'
 // Importation des factories
 import tagFactory from '../factories/tags.js'
 import recipeFactory from '../factories/recipes.js'
 
-const getRecipes = async () => {
-    const response = await fetch('../../data/recipes.json');
-    const json = await response.json();
-    // console.log("Success:", json);
-    return json;
-}
-
-const displayData = async (recipes) => {
+const displayData = (recipesData) => {
     const recipesSection = document.querySelector(".recipes");
-    const recipesCount = recipes.length;
+    const recipesCount = recipesData.length;
     recipesSection.innerHTML = "";
 
-    recipes.forEach((recipe) => {
+    recipesData.forEach((recipe) => {
         const recipeModel = recipeFactory(recipe);
         const recipeCardDOM = recipeModel.getRecipeCardDOM();
         recipesSection.appendChild(recipeCardDOM);
@@ -23,9 +18,8 @@ const displayData = async (recipes) => {
     document.querySelector('.number_recipes').innerHTML = `${recipesCount} recettes`
 };
 
-const init = async () => {
+const init = () => {
     // Récupère les datas des recettes
-    const recipes = await getRecipes();
     // console.log("recipes : " + recipes);
     displayData(recipes);
 };

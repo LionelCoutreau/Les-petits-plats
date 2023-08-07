@@ -1,4 +1,4 @@
-[
+const recipes = [
     {
         "id": 1,
         "image": "Recette01.jpg",
@@ -1774,3 +1774,5 @@
         "ustensils":["rouleau à patisserie","fouet"]
     }
 ]
+
+export default recipes;
