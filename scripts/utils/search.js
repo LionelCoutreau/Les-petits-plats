@@ -1,21 +1,19 @@
-function search(recherche, data) {
+// Recherche des recettes
+const searchRecipes = (searchTxtInput, data) => {
+    // Variable de stockage des résultats
+    let recipesFiltered = [];
 
-    // Variable de stockage des resultat
-    let recipeFiltered = [];
+    // Si le texte du champ est supérieur à 2 caractères, on exécute la recherche
+    if (searchTxtInput.length > 2) {
 
-    // Si la recherche textuel est suffisament longue, on execute la recherche
-    if (recherche.length >= 3) {
-
-        // Boucle pour toutes les recettes
-        for (var i = 0; i < data.length; i++) {
-
-            let recipe = data[i];
-            var isMatchText = false;
-
-            let name = recipe.name.toLowerCase();
-            let description = recipe.description.toLowerCase();
-            let ingredients = recipe.ingredients;
-            let terms = recherche.toLowerCase();
+        // Boucle des recettes
+        for (let i = 0; i < data.length; i++) {
+            let isMatchText = false;
+            const recipe = data[i];
+            const name = recipe.name.toLowerCase();
+            const description = recipe.description.toLowerCase();
+            const ingredients = recipe.ingredients;
+            const terms = searchTxtInput.toLowerCase();
 
             // Si la recherche est incluse dans le nom ou la description => valide la condition
             if (name.includes(terms) || description.includes(terms))
@@ -29,7 +27,7 @@ function search(recherche, data) {
 
             // Si la recette correspond à la recherche => Ajout à la variable retournée
             if (isMatchText === true) {
-                recipeFiltered.push(recipe)
+                recipesFiltered.push(recipe)
             }
 
         }
@@ -37,66 +35,65 @@ function search(recherche, data) {
     }
     else {
         // Si la recherche fait moins de 3 caractères, on retourne toutes les recettes en paramètre
-        recipeFiltered = data;
+        recipesFiltered = data;
     }
 
-    return recipeFiltered;
+    return recipesFiltered;
 }
 
-
-
-// Fonction qui retourne les recettes qui correspondent aux tags
-function tagFilter(ingredients, appareils, ustensiles, recipes) {
+// Filtre les recettes par tags
+const tagFilter = (ingredients, appareils, ustensiles, recipes) => {
+    // Variable de stockage des résultats
     let finalArray = [];
 
+    // On passe en revue les recettes
     recipes.forEach(element => {
-        let isMatchIngredient = false;
+        let isMatchIngredients = false;
         let isMatchAppareils = false;
         let isMatchUstensiles = false;
 
-
-        // => Trie tag ingrédient
-        let IngredientsInRecipe = element.ingredients.map((e) => e.ingredient);
+        // => Filtrage par tags ingrédients
+        const IngredientsInRecipe = element.ingredients.map((e) => e.ingredient);
         if (ingredients.length >= 1) {
-            // Si tous les éléments des tags sont compris dans la recette
+            // Si tous les tags ingrédients sont compris dans la recette
             if (ingredients.every((e) => IngredientsInRecipe.includes(e))) {
-                isMatchIngredient = true;
+                isMatchIngredients = true;
             }
         }
-        else
-            isMatchIngredient = true;
+        else {
+            isMatchIngredients = true;
+        }
 
-
-        // => Trie tag appareil
+        // Filtrage par tags appareils
         if (appareils.length >= 1) {
+            // Si tous les tags appareils sont compris dans la recette
             if (appareils.includes(element.appliance))
                 isMatchAppareils = true;
         }
-        else
+        else {
             isMatchAppareils = true;
+        }
 
-
-
-        // => Trie tag ustensiles
+        // Filtrage par tags ustensiles
         let ustensilesRecipe = element.ustensils;
         if (ustensiles.length >= 1) {
-            // Si tous les éléments des tags sont compris dans la recette
+            // Si tous les tags ustensiles sont compris dans la recette
             if (ustensiles.every((e) => ustensilesRecipe.includes(e))) {
                 isMatchUstensiles = true;
             }
         }
-        else
+        else {
             isMatchUstensiles = true;
+        }
+        // console.log(isMatchIngredients, isMatchAppareils, isMatchUstensiles)
 
-        // console.log(isMatchIngredient, isMatchAppareils, isMatchUstensiles)
-
+        // Si tout concorde, alors on ajoute la recette
         if (isMatchIngredient === true && isMatchAppareils === true && isMatchUstensiles === true) {
             finalArray.push(element)
         }
     });
 
     return finalArray;
-
 }
 
-export { search, tagFilter };
+export { searchRecipes, tagFilter };

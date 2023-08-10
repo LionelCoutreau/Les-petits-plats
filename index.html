@@ -28,12 +28,12 @@
                     </div>
                     <div class="dropdown__tags dropdown__tags--ingredients">
                         <div class="dropdown__searchbar">
-                            <input class="dropdown__input" type="search">
+                            <input class="dropdown__input" id="dropdown-ingredients" type="search" placeholder="Rechercher...">
                             <button class="dropdown__button" type="submit">
                                 <img src="./assets/search_small.svg" />
                             </button>
                         </div>
-                        <ul class="dropdown__list"></ul>
+                        <ul class="dropdown__list" id="ingredients-items"></ul>
                     </div>
                 </div>
                 <div class="dropdown dropdown--apparels">
@@ -43,12 +43,12 @@
                     </div>
                     <div class="dropdown__tags dropdown__tags--apparels">
                         <div class="dropdown__searchbar">
-                            <input class="dropdown__input" type="search">
+                            <input class="dropdown__input" id="dropdown-apparels" type="search" placeholder="Rechercher...">
                             <button class="dropdown__button" type="submit">
                                 <img src="./assets/search_small.svg" />
                             </button>
                         </div>
-                        <ul class="dropdown__list"></ul>
+                        <ul class="dropdown__list" id="apparels-items"></ul>
                     </div>
                 </div>
                 <div class="dropdown dropdown--ustensils">
@@ -58,12 +58,12 @@
                     </div>
                     <div class="dropdown__tags dropdown__tags--ustensils">
                         <div class="dropdown__searchbar">
-                            <input class="dropdown__input" type="search">
+                            <input class="dropdown__input" id="dropdown-ustensils" type="search" placeholder="Rechercher...">
                             <button class="dropdown__button" type="submit">
                                 <img src="./assets/search_small.svg" />
                             </button>
                         </div>
-                        <ul class="dropdown__list"></ul>
+                        <ul class="dropdown__list" id="ustensils-items"></ul>
                     </div>
                 </div>
             </div>
@@ -76,6 +76,8 @@
             </div>
         </section>
         <section class="recipes"></section>
+
+        <p class="recipe__error" id="error-search">Erreur lors de la recherche</p>
     </main>
 
     <script src="scripts/pages/index.js" type="module"></script>

@@ -3,7 +3,7 @@ const getAllIngredients = (data) => {
     let ingredientsArray = [];
 
     data.forEach(element => {
-        let ingredientsRecipe = element.ingredients;
+        const ingredientsRecipe = element.ingredients;
         ingredientsRecipe.forEach((ingredients) => {
             if (ingredientsArray.indexOf(ingredients.ingredient) === -1) {
                 ingredientsArray.push(ingredients.ingredient)
@@ -19,9 +19,9 @@ const getAllAppareils = (data) => {
     let appareilArray = [];
 
     data.forEach(element => {
-        let appliance = element.appliance;
-        if (appareilArray.indexOf(appliance) === -1) {
-            appareilArray.push(appliance)
+        const appareil = element.appliance;
+        if (appareilArray.indexOf(appareil) === -1) {
+            appareilArray.push(appareil)
         }
     })
 
@@ -33,7 +33,7 @@ const getAllUstensiles = (data) => {
     let ustensilesArray = [];
 
     data.forEach(element => {
-        let ustensiles = element.ustensils;
+        const ustensiles = element.ustensils;
 
         ustensiles.forEach((ustensile) => {
             if (ustensilesArray.indexOf(ustensile) === -1) {
