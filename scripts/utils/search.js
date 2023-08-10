@@ -1,5 +1,6 @@
 // Recherche des recettes
 const searchRecipes = (searchTxtInput, data) => {
+    console.log('data', data);
     // Variable de stockage des résultats
     let recipesFiltered = [];
 
@@ -53,10 +54,10 @@ const tagFilter = (ingredients, appareils, ustensiles, recipes) => {
         let isMatchUstensiles = false;
 
         // => Filtrage par tags ingrédients
-        const IngredientsInRecipe = element.ingredients.map((e) => e.ingredient);
+        const IngredientsInRecipe = element.ingredients.map((e) => e.ingredient.toLowerCase());
         if (ingredients.length >= 1) {
             // Si tous les tags ingrédients sont compris dans la recette
-            if (ingredients.every((e) => IngredientsInRecipe.includes(e))) {
+            if (ingredients.every((e) => IngredientsInRecipe.includes(e.toLowerCase()))) {
                 isMatchIngredients = true;
             }
         }
@@ -67,7 +68,7 @@ const tagFilter = (ingredients, appareils, ustensiles, recipes) => {
         // Filtrage par tags appareils
         if (appareils.length >= 1) {
             // Si tous les tags appareils sont compris dans la recette
-            if (appareils.includes(element.appliance))
+            if (appareils.includes(element.appliance.toLowerCase()))
                 isMatchAppareils = true;
         }
         else {
@@ -75,10 +76,10 @@ const tagFilter = (ingredients, appareils, ustensiles, recipes) => {
         }
 
         // Filtrage par tags ustensiles
-        let ustensilesRecipe = element.ustensils;
+        const ustensilesRecipe = element.ustensils.map((e) => e.toLowerCase());
         if (ustensiles.length >= 1) {
             // Si tous les tags ustensiles sont compris dans la recette
-            if (ustensiles.every((e) => ustensilesRecipe.includes(e))) {
+            if (ustensiles.every((e) => ustensilesRecipe.includes(e.toLowerCase()))) {
                 isMatchUstensiles = true;
             }
         }
@@ -88,7 +89,7 @@ const tagFilter = (ingredients, appareils, ustensiles, recipes) => {
         // console.log(isMatchIngredients, isMatchAppareils, isMatchUstensiles)
 
         // Si tout concorde, alors on ajoute la recette
-        if (isMatchIngredient === true && isMatchAppareils === true && isMatchUstensiles === true) {
+        if (isMatchIngredients === true && isMatchAppareils === true && isMatchUstensiles === true) {
             finalArray.push(element)
         }
     });

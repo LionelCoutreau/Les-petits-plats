@@ -1,9 +1,15 @@
 export default function tagFactory(tagName) {
+    const capitalizeText = (text) => {
+        const capitalizedString = text.toLowerCase();
+        const result = capitalizedString.charAt(0).toUpperCase() + capitalizedString.substr(1);
+        return result;
+    }
+    
     const getTagDropdownDOM = () => {
         // li tag
         const tag = document.createElement( 'li' );
-        tag.textContent = tagName;
-        tag.dataset.tag = tagName;
+        tag.textContent = capitalizeText(tagName);
+        tag.dataset.tag = tagName.toLowerCase();
 
         return tag;
     }
@@ -15,12 +21,12 @@ export default function tagFactory(tagName) {
         // name
         const name = document.createElement( 'div' );
         name.className = 'tag__name';
-        residence.textContent = tagName;
+        name.textContent = capitalizeText(tagName);
         // icone
         const icone = document.createElement( 'img' );
-        img.className = 'tag__close';
-        img.dataset.tag = tagName;
-        img.setAttribute('src', './assets/close.svg');
+        icone.className = 'tag__close';
+        icone.dataset.tag = tagName.toLowerCase();
+        icone.setAttribute('src', './assets/close.svg');
 
         //construction du tag
         tag.appendChild(name);

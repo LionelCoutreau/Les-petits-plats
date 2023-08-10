@@ -23,7 +23,7 @@ const dropdownsInputs = document.querySelectorAll('.dropdown__input');
 // DOM de la liste des tags
 const tagsSection = document.querySelector('.tags');
 // DOM de la liste des recettes
-const recipesSection = document.querySelector('recipes');
+const recipesSection = document.querySelector('.recipes');
 // DOM des listes des dropdown
 const ingredientsItems = document.getElementById('ingredients-items');
 const appareilsItems = document.getElementById('apparels-items');
@@ -37,7 +37,8 @@ const ingredientsInput = document.getElementById('dropdown-ingredients');
 const appareilsInput = document.getElementById('dropdown-apparels');
 const ustensilesInput = document.getElementById('dropdown-ustensils');
 // DOM de l'input de la recherche principale
-const searchInput = document.getElementById('searchbar__input')
+const searchInput = document.querySelector('.searchbar__input')
+const searchButton = document.querySelector('.searchbar__button')
 
 // Fonction d'affichage des recettes
 const displayRecipes = (recipesData) => {
@@ -65,7 +66,8 @@ const displayRecipes = (recipesData) => {
         displayTagsActive();
 
         // Affichage du nombre de recettes
-        numberRecipes.innerText = `${recipesCount} recettes`;
+        const plural = recipesCount > 1 ? 's' : '';
+        numberRecipes.innerText = `${recipesCount} recette${plural}`;
     }
     else {
         errorSearch.innerText = `Aucune recette ne contient ${searchText}. Vous pouvez chercher "tarte aux pommes", "poisson", etc...`;
@@ -89,6 +91,11 @@ const displayTagsDropdowns = () => {
     const appareilsFilterTagsArray = FilterTagArrayBySearch(appareilsInput.value, appareilsArray);
     const ustensilesFilterTagsArray = FilterTagArrayBySearch(ustensilesInput.value, ustensilesArray);
 
+    // Réinitialisation des listes des tags des dropdowns
+    ingredientsItems.innerHTML = '';
+    appareilsItems.innerHTML = '';
+    ustensilesItems.innerHTML = '';
+
     // Création des tags à afficher dans les dropdowns
     ingredientsFilterTagsArray.forEach((ingredientTag) => {
         const ingredientTagModel = tagFactory(ingredientTag);
@@ -96,7 +103,7 @@ const displayTagsDropdowns = () => {
         // Ajout de l'élément dans la liste dropdown
         ingredientsItems.appendChild(ingredientTagDropdownDOM);
         // Ajout de l'event listener au click
-        ingredientTagDropdownDom.addEventListener('click', (e) => { e.stopPropagation(); addTagsSearch('Ingredient', e.target) })
+        ingredientTagDropdownDOM.addEventListener('click', (e) => { e.stopPropagation(); addTagsSearch('Ingredient', e.target) })
     });
     appareilsFilterTagsArray.forEach((appareilTag) => {
         const appareilTagModel = tagFactory(appareilTag);
@@ -149,23 +156,29 @@ const displayTagsActive = () => {
 // Ajout d'un tag aux filtres de recherche, et affichage des recettes filtrées
 const addTagsSearch = (type, element) => {
     const tag = element.dataset.tag;
-
+    let dropdown = '';
     switch (type) {
         case 'Ingredient':
             ingredients.push(tag);
+            dropdown = '.dropdown__tags--ingredients';
             break;
         case 'Appareil':
             appareils.push(tag);
+            dropdown = '.dropdown__tags--apparels';
             break;
         case 'Ustensile':
             ustensiles.push(tag);
+            dropdown = '.dropdown__tags--ustensils';
             break;
     }
-
     // Execution des scripts de recherche et affichage des résultats
     const result = searchRecipes(searchText, tagFilter(ingredients, appareils, ustensiles, recipes));
     dataRecipes = result;
     displayRecipes(dataRecipes);
+
+    // Fermeture de la liste
+    document.querySelector(dropdown).style.display = 'none';
+
 }
 
 // Suppression d'un tag aux filtres de recherche, et affichage des recettes filtrées
@@ -203,28 +216,53 @@ const init = () => {
         searchText = e.target.value;
 
         // Execution des scripts de recherche et affichage des résultats
-        const result = search(searchText, tagFilter(ingredients, appareils, ustensiles, recipes));
-        //console.log(result)
+        const result = searchRecipes(searchText, tagFilter(ingredients, appareils, ustensiles, recipes));
+        dataRecipes = result;
+        displayRecipes(dataRecipes);
+    })
+
+    // Ajout de l'event listener de la barre de recherche
+    searchButton.addEventListener('click', () => {
+        // mise à jour de la variable de filtre de recherche principale
+        searchText = searchInput.value;
+
+        // Execution des scripts de recherche et affichage des résultats
+        const result = searchRecipes(searchText, tagFilter(ingredients, appareils, ustensiles, recipes));
         dataRecipes = result;
         displayRecipes(dataRecipes);
     })
 
     // Ajout des event listeners d'ouverture des dropdowns
     dropdowns.forEach((dropdown) => {
-        dropdown.addEventListener('click', () => {
-            // Changement de l'icone du dropdown
-            dropdown.querySelector('.dropdown__icon').src = './assets/up.svg';
+        dropdown.querySelector('.dropdown__wrapper').addEventListener('click', () => {
+            if (dropdown.querySelector('.dropdown__tags').style.display === 'block') {
+                // Changement de l'icone du dropdown
+                dropdown.querySelector('.dropdown__icon').src = './assets/down.svg';
 
-            // Obtenir le focus sur l'input à l'interrieur des dropdowns
-            dropdown.querySelector('dropdown__input').focus();
+                // Affichage de la liste
+                dropdown.querySelector('.dropdown__tags').style.display = 'none';
+
+                // Obtenir le focus sur l'input à l'interrieur des dropdowns
+                dropdown.querySelector('.dropdown__input').blur();
+            }
+            else {
+                // Changement de l'icone du dropdown
+                dropdown.querySelector('.dropdown__icon').src = './assets/up.svg';
+
+                // Affichage de la liste
+                dropdown.querySelector('.dropdown__tags').style.display = 'block';
+
+                // Obtenir le focus sur l'input à l'interrieur des dropdowns
+                dropdown.querySelector('.dropdown__input').focus();
+            }
         });
     })    
 
     // Ajout des event listeners dans les inputs des dropdowns
     dropdownsInputs.forEach((element) => {
-        element.addEventListener('input', () => {
+        element.addEventListener('input', (e) => {
             // Affichage des tags dans les dropdowns
-            displayTagDropdown();
+            displayTagsDropdowns();
         });
     })
 };

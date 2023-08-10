@@ -48,7 +48,7 @@ export default function recipeFactory(data) {
 
         // liste des ingrédients
         ingredients.forEach(ingredient => {
-            console.log(ingredient);
+            //console.log(ingredient);
             // bloc ingredient
             const ingredientBloc = document.createElement('div');
             ingredientBloc.className = 'recipe__ingredient';

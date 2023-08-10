@@ -5,8 +5,8 @@ const FilterTagArrayBySearch = (filterText, tags) => {
         // Boucle du tableau de tags
         tags.forEach(element => {
             // si cela correspond, on ajoute le tag
-            if (element.toLowerCase().indexOf(filterText.toLowerCase()) >= 0) {
-                filterArray.push(element)
+            if (element.toLowerCase().includes(filterText.toLowerCase())) {
+                filterArray.push(element);
             }
         });
     }
