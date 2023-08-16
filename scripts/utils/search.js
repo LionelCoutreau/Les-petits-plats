@@ -7,9 +7,10 @@ const searchRecipes = (searchTxtInput, data) => {
     // Si le texte du champ est supérieur à 2 caractères, on exécute la recherche
     if (searchTxtInput.length > 2) {
 
-        // Parcours des recettes
-        data.forEach(recipe => {
+        // Boucle des recettes
+        for (let i = 0; i < data.length; i++) {
             let isMatchText = false;
+            const recipe = data[i];
             const name = recipe.name.toLowerCase();
             const description = recipe.description.toLowerCase();
             const ingredients = recipe.ingredients;
@@ -17,19 +18,23 @@ const searchRecipes = (searchTxtInput, data) => {
             // Valeur du champ de recherche principale
             const terms = searchTxtInput.toLowerCase();
 
-            // Si la recherche est incluse dans le nom ou la description, on valide la condition
-            if (name.includes(terms) || description.includes(terms))
+            // Si la recherche est incluse dans le nom ou la description => valide la condition
+            if (name.indexOf(terms) != -1 || description.indexOf(terms) != -1)
                 isMatchText = true;
 
-            // Si la recherche correspond à un ingredient, on valide la condition
-            if (ingredients.filter(item => item.ingredient.includes(terms)).length >= 1)
-                isMatchText = true;
+            // Si la recherche correspond à un ingredient => valide la condition
+            for (var ig = 0; ig < ingredients.length; ig++) {
+                if (ingredients[ig].ingredient.toLowerCase().indexOf(terms) != -1)
+                    isMatchText = true;
+            }
 
-            // Si la recette correspond à la recherche, on ajoute la recette à la variable
+            // Si la recette correspond à la recherche => Ajout à la variable retournée
             if (isMatchText === true) {
                 recipesFiltered.push(recipe)
             }
-        });
+
+        }
+
     }
     else {
         // Si la recherche fait moins de 3 caractères, on retourne toutes les recettes en paramètre
