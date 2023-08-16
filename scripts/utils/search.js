@@ -30,7 +30,7 @@ const searchRecipes = (searchTxtInput, data) => {
 
             // Si la recette correspond à la recherche => Ajout à la variable retournée
             if (isMatchText === true) {
-                recipesFiltered.push(recipe)
+                recipesFiltered.push(recipe);
             }
 
         }
