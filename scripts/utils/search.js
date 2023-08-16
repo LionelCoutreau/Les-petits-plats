@@ -1,42 +1,20 @@
 // Recherche des recettes
 const searchRecipes = (searchTxtInput, data) => {
-    console.log('data', data);
-    // Variable de stockage des résultats
-    let recipesFiltered = [];
-
+    // Valeur du champ de recherche principale
+    const terms = searchTxtInput.toLowerCase();
+    
     // Si le texte du champ est supérieur à 2 caractères, on exécute la recherche
-    if (searchTxtInput.length > 2) {
-
-        // Parcours des recettes
-        data.forEach(recipe => {
-            let isMatchText = false;
+    if (terms.length > 2) {
+        data = data.filter(recipe => {
             const name = recipe.name.toLowerCase();
             const description = recipe.description.toLowerCase();
             const ingredients = recipe.ingredients;
-
-            // Valeur du champ de recherche principale
-            const terms = searchTxtInput.toLowerCase();
-
-            // Si la recherche est incluse dans le nom ou la description, on valide la condition
-            if (name.includes(terms) || description.includes(terms))
-                isMatchText = true;
-
-            // Si la recherche correspond à un ingredient, on valide la condition
-            if (ingredients.filter(item => item.ingredient.includes(terms)).length >= 1)
-                isMatchText = true;
-
-            // Si la recette correspond à la recherche, on ajoute la recette à la variable
-            if (isMatchText === true) {
-                recipesFiltered.push(recipe);
-            }
-        });
-    }
-    else {
-        // Si la recherche fait moins de 3 caractères, on retourne toutes les recettes en paramètre
-        recipesFiltered = data;
+            
+            return name.includes(terms) || description.includes(terms) || ingredients.filter(item => item.ingredient.toLowerCase().includes(terms)).length >= 1;
+        })
     }
 
-    return recipesFiltered;
+    return data;
 }
 
 // Filtre les recettes par tags
