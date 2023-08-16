@@ -48,7 +48,7 @@
         background:transparent;
     }
     &__list {
-        height:200px;
+        max-height:200px;
         overflow:auto;
         list-style-type: none;
         margin:0px;

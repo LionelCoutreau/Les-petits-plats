@@ -14,15 +14,17 @@ const searchRecipes = (searchTxtInput, data) => {
             const name = recipe.name.toLowerCase();
             const description = recipe.description.toLowerCase();
             const ingredients = recipe.ingredients;
+
+            // Valeur du champ de recherche principale
             const terms = searchTxtInput.toLowerCase();
 
             // Si la recherche est incluse dans le nom ou la description => valide la condition
-            if (name.includes(terms) || description.includes(terms))
+            if (name.indexOf(terms) != -1 || description.indexOf(terms) != -1)
                 isMatchText = true;
 
             // Si la recherche correspond à un ingredient => valide la condition
             for (var ig = 0; ig < ingredients.length; ig++) {
-                if (ingredients[ig].ingredient.toLowerCase().includes(terms))
+                if (ingredients[ig].ingredient.toLowerCase().indexOf(terms) != -1)
                     isMatchText = true;
             }
 
