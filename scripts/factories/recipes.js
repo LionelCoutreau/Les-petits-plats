@@ -15,6 +15,7 @@ export default function recipeFactory(data) {
         // image
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture)
+        img.setAttribute("alt", name)
 
         // time
         const temps = document.createElement( 'div' );
