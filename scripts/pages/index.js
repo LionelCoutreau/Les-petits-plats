@@ -87,9 +87,9 @@ const displayTagsDropdowns = () => {
     ustensilesArray = ustensilesArray.filter(e => ustensiles.indexOf(e) === -1);
 
     // Filtre des tags par catégorie
-    const ingredientsFilterTagsArray = FilterTagArrayBySearch(ingredientsInput.value, ingredientsArray);
-    const appareilsFilterTagsArray = FilterTagArrayBySearch(appareilsInput.value, appareilsArray);
-    const ustensilesFilterTagsArray = FilterTagArrayBySearch(ustensilesInput.value, ustensilesArray);
+    const ingredientsFilterTagsArray = FilterTagArrayBySearch(ingredientsInput.value.replace(/<[^>]+>/gim, ''), ingredientsArray);
+    const appareilsFilterTagsArray = FilterTagArrayBySearch(appareilsInput.value.replace(/<[^>]+>/gim, ''), appareilsArray);
+    const ustensilesFilterTagsArray = FilterTagArrayBySearch(ustensilesInput.value.replace(/<[^>]+>/gim, ''), ustensilesArray);
 
     // Réinitialisation des listes des tags des dropdowns
     ingredientsItems.innerHTML = '';
@@ -213,7 +213,7 @@ const init = () => {
     // Ajout de l'event listener de la barre de recherche
     searchInput.addEventListener('input', (e) => {
         // mise à jour de la variable de filtre de recherche principale
-        searchText = e.target.value;
+        searchText = e.target.value.replace(/<[^>]+>/gim, '');
 
         // Execution des scripts de recherche et affichage des résultats
         const result = searchRecipes(searchText, tagFilter(ingredients, appareils, ustensiles, recipes));
@@ -224,7 +224,7 @@ const init = () => {
     // Ajout de l'event listener de la barre de recherche
     searchButton.addEventListener('click', () => {
         // mise à jour de la variable de filtre de recherche principale
-        searchText = searchInput.value;
+        searchText = searchInput.value.replace(/<[^>]+>/gim, '');
 
         // Execution des scripts de recherche et affichage des résultats
         const result = searchRecipes(searchText, tagFilter(ingredients, appareils, ustensiles, recipes));
