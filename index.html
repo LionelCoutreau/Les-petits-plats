@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,29 +8,29 @@
 </head>
 <body>
     <header class="header">
-        <a class="logo" href="index.html"><img src="./assets/logo.svg" /></a>
+        <a class="logo" href="index.html"><img src="./assets/logo.svg" alt="Logo" /></a>
         <div class="header__wrapper">
             <h1>Cherchez parmi plus de 1500 recettes<br>du quotidien, simples et délicieuses</h1>
             <form name="search" class="searchbar">
                 <input class="searchbar__input" type="search" placeholder="Recherchez une recette, un ingrédient, ...">
-                <button class="searchbar__button" type="submit"><img class="searchbar__button--normal" src="./assets/search.svg" /><img class="searchbar__button--hover" src="./assets/search_hover.svg" /></button>
+                <button class="searchbar__button" type="submit"><img class="searchbar__button--normal" src="./assets/search.svg" alt="Recherche principale" /><img class="searchbar__button--hover" src="./assets/search_hover.svg" alt="Recherche principale" /></button>
             </form>
         </div>
     </header>
 
     <main>
-        <section class="dropdowns">
+        <div class="dropdowns">
             <div class="dropdowns__wrapper">
                 <div class="dropdown dropdown--ingredients">
                     <div class="dropdown__wrapper">
                         <div class="dropdown__label">Ingrédients</div>
-                        <img class="dropdown__icon" src="./assets/down.svg" />
+                        <img class="dropdown__icon" src="./assets/down.svg" alt="Liste des ingrédients" />
                     </div>
                     <div class="dropdown__tags dropdown__tags--ingredients">
                         <div class="dropdown__searchbar">
                             <input class="dropdown__input" id="dropdown-ingredients" type="search" placeholder="Rechercher...">
                             <button class="dropdown__button" type="submit">
-                                <img src="./assets/search_small.svg" />
+                                <img src="./assets/search_small.svg" alt="Rechercher" />
                             </button>
                         </div>
                         <ul class="dropdown__list" id="ingredients-items"></ul>
@@ -39,13 +39,13 @@
                 <div class="dropdown dropdown--apparels">
                     <div class="dropdown__wrapper">
                         <div class="dropdown__label">Appareils</div>
-                        <img class="dropdown__icon" src="./assets/down.svg" />
+                        <img class="dropdown__icon" src="./assets/down.svg" alt="Liste des appareils" />
                     </div>
                     <div class="dropdown__tags dropdown__tags--apparels">
                         <div class="dropdown__searchbar">
                             <input class="dropdown__input" id="dropdown-apparels" type="search" placeholder="Rechercher...">
                             <button class="dropdown__button" type="submit">
-                                <img src="./assets/search_small.svg" />
+                                <img src="./assets/search_small.svg" alt="Rechercher" />
                             </button>
                         </div>
                         <ul class="dropdown__list" id="apparels-items"></ul>
@@ -54,13 +54,13 @@
                 <div class="dropdown dropdown--ustensils">
                     <div class="dropdown__wrapper">
                         <div class="dropdown__label">Ustensiles</div>
-                        <img class="dropdown__icon" src="./assets/down.svg" />
+                        <img class="dropdown__icon" src="./assets/down.svg" alt="Liste des ustensiles" />
                     </div>
                     <div class="dropdown__tags dropdown__tags--ustensils">
                         <div class="dropdown__searchbar">
                             <input class="dropdown__input" id="dropdown-ustensils" type="search" placeholder="Rechercher...">
                             <button class="dropdown__button" type="submit">
-                                <img src="./assets/search_small.svg" />
+                                <img src="./assets/search_small.svg" alt="Rechercher" />
                             </button>
                         </div>
                         <ul class="dropdown__list" id="ustensils-items"></ul>
@@ -68,9 +68,9 @@
                 </div>
             </div>
             <div class="number_recipes"></div>
-        </section>
-        <section class="tags"></section>
-        <section class="recipes"></section>
+        </div>
+        <div class="tags"></div>
+        <div class="recipes"></div>
 
         <p class="recipe__error" id="error-search">Erreur lors de la recherche</p>
     </main>
